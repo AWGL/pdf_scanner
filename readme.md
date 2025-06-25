@@ -1,4 +1,8 @@
-This script converts all PDF files in a specified directory to PNG images.
+This script :
+-converts all PDF files in a specified directory to pillow image objects
+-extracts text from the images using tesseract
+-searches the text for a given string pattern
+-prints the filename and page number to the terminal if the pattern is found
 
 usage: python run.py [input_dir] [pattern]
 
