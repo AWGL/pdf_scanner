@@ -1,10 +1,3 @@
-# usage: python run.py [input_dir] [pattern]
-# This script converts all PDF files in a specified directory to PNG images.
-# Make sure to adjust the directory paths as needed.
-# Ensure you have the required libraries installed:
-# conda create --name pdf_stringfinder pdf2image pillow pytesseract click
-# ensure you have poppler installed on your system using the command: sudo apt install poppler-utils
-
 from pdf2image import convert_from_path
 from PIL import Image
 import pytesseract
