@@ -1,0 +1,6 @@
+Found 2 PDF files. 
+Processing file: /home/ant/Documents/shimano/UM-5Y40A-005-ENG.pdf 
+    Pattern 'shimano' found in UM-5Y40A-005-ENG page 1.
+    Pattern 'shimano' found in UM-5Y40A-005-ENG page 3.
+Processing file: /home/ant/Documents/shimano/UM-5XZ0A-007-ENG.pdf 
+    Pattern 'shimano' found in UM-5XZ0A-007-ENG page 1.
