@@ -1,0 +1,4 @@
+[2025-06-26 11:12:44] Found 2 PDF file(s) in '/home/ant/Documents/shimano/'.
+[2025-06-26 11:12:44] Regex pattern: 'UM-5XZ0A-007' (case-insensitive: False)
+[2025-06-26 11:12:44] Processing file: /home/ant/Documents/shimano/UM-5Y40A-005-ENG.pdf
+[2025-06-26 11:12:49] Processing file: /home/ant/Documents/shimano/UM-5XZ0A-007-ENG.pdf

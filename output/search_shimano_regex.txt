@@ -1,0 +1,6 @@
+[2025-06-26 11:08:40] Found 2 PDF file(s) in '/home/ant/Documents/shimano/'.
+[2025-06-26 11:08:40] Regex pattern: '\w{2}-\S{5}-\d{3}' (case-insensitive: False)
+[2025-06-26 11:08:40] Processing file: /home/ant/Documents/shimano/UM-5Y40A-005-ENG.pdf
+[2025-06-26 11:08:41]     Pattern found in UM-5Y40A-005-ENG page 1 (1 match(es)):
+        Match: UM-5Y40A-005
+[2025-06-26 11:08:45] Processing file: /home/ant/Documents/shimano/UM-5XZ0A-007-ENG.pdf

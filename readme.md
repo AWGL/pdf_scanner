@@ -5,7 +5,7 @@
 * searches the text for a given string pattern
 * prints the filename and page number to a text file with a given filename if the pattern is found
 
-usage: `python run.py [input_dir] [output_dir] [pattern]`
+usage: `python run.py [input_dir] [output_file_name] [pattern]`
 
 Make sure to adjust the directory paths as needed.
 
