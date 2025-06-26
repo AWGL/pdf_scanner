@@ -1,6 +1,6 @@
 import os
 import glob
-import re
+import regex as re  # enhanced regex with fuzzy matching support
 from pdf2image import convert_from_path
 from PIL import Image
 import pytesseract
@@ -16,13 +16,17 @@ def log(message, file):
 @click.argument('output_file_name', type=str, default='search_results.txt')
 @click.argument('pattern', type=str, required=True)
 @click.option('--ignore-case', '-i', is_flag=True, help='Perform case-insensitive regex matching.')
-def main(input_dir, output_file_name, pattern, ignore_case):
+@click.option('--fuzzy', '-f', is_flag=True, help='Enable fuzzy matching (up to 2 errors).')
+def main(input_dir, output_file_name, pattern, ignore_case, fuzzy):
     """
     Search for a REGEX PATTERN in all PDF files in INPUT_DIR and write results to OUTPUT_FILE_NAME.
     """
+    flags = re.IGNORECASE if ignore_case else 0
+
+    # If fuzzy, append fuzzy matching syntax to pattern
+    fuzzy_suffix = "{e<=2}" if fuzzy else ""
     try:
-        flags = re.IGNORECASE if ignore_case else 0
-        regex = re.compile(pattern, flags)
+        regex = re.compile(f"({pattern}){fuzzy_suffix}", flags)
     except re.error as e:
         click.echo(f"Invalid regular expression: {e}")
         return
@@ -35,7 +39,7 @@ def main(input_dir, output_file_name, pattern, ignore_case):
 
     with open(output_path, "w") as f:
         log(f"Found {len(pdf_files)} PDF file(s) in '{input_dir}'.", f)
-        log(f"Regex pattern: '{pattern}' (case-insensitive: {ignore_case})", f)
+        log(f"Regex pattern: '{pattern}' (ignore case: {ignore_case}, fuzzy: {fuzzy})", f)
 
         for file in pdf_files:
             log(f"Processing file: {file}", f)
@@ -50,11 +54,12 @@ def main(input_dir, output_file_name, pattern, ignore_case):
                 image_name = f"{filename} page {i + 1}"
                 try:
                     page_text = pytesseract.image_to_string(image)
-                    print(page_text)
                     matches = regex.findall(page_text)
                     if matches:
                         log(f"    Pattern found in {image_name} ({len(matches)} match(es)):", f)
                         for match in matches:
+                            if isinstance(match, tuple):  # handle capturing groups
+                                match = match[0]
                             f.write(f"        Match: {match}\n")
                 except Exception as e:
                     log(f"    OCR failed on {image_name}: {e}", f)
